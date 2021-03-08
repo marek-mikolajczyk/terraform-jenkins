@@ -1,9 +1,14 @@
 pipeline {
     agent any 
     stages {
-        stage('Stage 1') {
+        stage('Say hello') {
             steps {
                 echo 'Hello world!' 
+            }
+        }
+        stage('Build AMI') {
+            steps {
+                /usr/local/bin/packer build packer/packer.json
             }
         }
     }
