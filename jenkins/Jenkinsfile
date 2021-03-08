@@ -8,7 +8,7 @@ pipeline {
         }
         stage('Build AMI') {
             steps {
-                /usr/local/bin/packer build packer/packer.json
+                sh "/usr/local/bin/packer build packer/packer.json"
             }
         }
     }
