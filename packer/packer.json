@@ -7,7 +7,7 @@
   "provisioners": [
     {
         "type": "shell",
-        "execute_command": "touch /tmp/123"
+        "inline": ["touch /tmp/123"]
     }
   ],
 
