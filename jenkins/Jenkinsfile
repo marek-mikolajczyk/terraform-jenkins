@@ -34,7 +34,7 @@ pipeline {
             steps {
                 withCredentials([
                     string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
-                        variable: 'TV_VAR_my_public_ip'),
+                        variable: 'TF_VAR_my_public_ip'),
                     [$class: 'AmazonWebServicesCredentialsBinding', 
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                         credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
