@@ -1,4 +1,4 @@
-data "aws_ami" "" {
+data "aws_ami" "myimage" {
   most_recent = true
   owners      = "self"
 
@@ -13,7 +13,7 @@ data "aws_ami" "" {
 
 
 resource "aws_instance" "example" {
-	ami = "ami-042e8287309f5df03"
+	ami = data.aws_ami.myimage.id
 	instance_type = "t2.micro"
 	vpc_security_group_ids = [aws_security_group.instance.id]
 
