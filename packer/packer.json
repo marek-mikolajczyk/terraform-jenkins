@@ -1,3 +1,7 @@
+/* 
+ubunt 20.04 LTS
+*/
+
 {
   "variables": {
   "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
@@ -8,7 +12,7 @@
     {
         "type": "shell",
         "inline": [
-		"echo build by packer >> /tmp/123"
+		        "echo build by packer >> /root/123"
 		]
     }
   ],
