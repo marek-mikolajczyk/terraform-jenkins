@@ -1,3 +1,8 @@
+locals {
+  timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
+}
+  
+  
 data "aws_ami" "myimage" {
   most_recent = true
   owners      = ["self"]
@@ -12,10 +17,10 @@ data "aws_ami" "myimage" {
 }
 
 
-resource "aws_instance" "example" {
+resource "aws_instance" "instance" {
 	ami = data.aws_ami.myimage.id
 	instance_type = "t2.micro"
-	vpc_security_group_ids = [aws_security_group.instance.id]
+	vpc_security_group_ids = [aws_security_group.sg.id]
 
 	user_data = <<-EOF
 		#!/bin/bash
@@ -25,12 +30,12 @@ resource "aws_instance" "example" {
 		EOF
 
 	tags = {
-		Name = "terraform-jenkins"
+		Name = "terraform-jenkins-${local.timestamp}"
 	}
 }
 
-resource "aws_security_group" "instance" {
-	name = "terraform-example-instance"
+resource "aws_security_group" "sg" {
+	name = "terraform-jenkins-${local.timestamp}"
 	ingress {
 		from_port = var.server_port
 		to_port = var.server_port
@@ -48,6 +53,6 @@ variable "server_port" {
 
 
 output "public_ip" {
-	value = aws_instance.example.public_ip
+	value = aws_instance.instance.public_ip
 	description = "The public IP address of the web server"
 }
