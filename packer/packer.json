@@ -8,7 +8,7 @@
     {
         "type": "shell",
         "inline": [
-		        "echo build by packer >> /root/123"
+		        "echo build by packer >> /tmp/123"
 		]
     }
   ],

@@ -19,7 +19,7 @@ resource "aws_instance" "example" {
 
 	user_data = <<-EOF
 		#!/bin/bash
-		cat /root/123 >> index.html
+		cat /tmp/123 >> index.html
         echo "spawned by terraform" >> index.html
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
