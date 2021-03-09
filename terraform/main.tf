@@ -4,6 +4,9 @@ locals {
   private_key = "${path.module}/../secrets/id_rsa_ssh_terraform-jenkins"
 }
   
+variable "my_public_ip" {
+  type = string
+}
   
 data "aws_ami" "myimage" {
   most_recent = true
@@ -60,7 +63,7 @@ resource "aws_security_group" "sg" {
 		from_port = 22
 		to_port = 22
 		protocol = "tcp"
-		cidr_blocks = ["${var.my_ip_address}/32"]
+		cidr_blocks = ["${var.my_public_ip}/32"]
 	}
 }
 
