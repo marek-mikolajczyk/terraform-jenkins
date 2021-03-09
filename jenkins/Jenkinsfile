@@ -25,7 +25,7 @@ pipeline {
 			secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
 		{
                 sh "cd terraform ; /usr/local/bin/terraform init"
-                sh "cd terraform ; /usr/local/bin/terraform plan"
+                sh "cd terraform ; TF_VAR_access_key=$AWS_ACCESS_KEY_ID TF_VAR_secret_key=$AWS_SECRET_ACCESS_KEY /usr/local/bin/terraform plan "
                 sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
             	}
             }
