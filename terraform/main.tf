@@ -1,5 +1,6 @@
 locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
+  instance_hostname = "terraform-jenkins"
 }
   
   
@@ -29,8 +30,13 @@ resource "aws_instance" "instance" {
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
 
+
+	provisioner "remote-exec" {
+  			inline = ["sudo hostnamectl set-hostname ${instance_hostname}"]
+	}
+
 	tags = {
-		Name = "terraform-jenkins"
+		Name = locals.instance_hostname
 	}
 }
 
