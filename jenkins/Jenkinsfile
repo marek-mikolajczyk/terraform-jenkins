@@ -30,10 +30,18 @@ pipeline {
 		        AWS_DEFAULT_REGION="us-east-1"
 	        }
             steps {
-            	    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
-			        accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-			        credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
-			        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+            	    withCredentials([
+                        
+                        [$class: 'AmazonWebServicesCredentialsBinding', 
+			            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+			            credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
+			            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'],
+                    
+                        [string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
+                        variable: 'TV_VAR_my_public_ip')
+                    
+                         ]) 
+
 		            {       
                         sh "cd terraform ; /usr/local/bin/terraform init"
                         sh "cd terraform ; /usr/local/bin/terraform plan "
