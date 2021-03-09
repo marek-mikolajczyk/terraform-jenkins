@@ -6,6 +6,7 @@ pipeline {
                 echo 'Hello world!' 
             }
         }
+/*
         stage('Build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
@@ -17,6 +18,7 @@ pipeline {
             	}
             }
     	}
+*/
         stage('deploy ec2 with terraform ') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
