@@ -38,7 +38,7 @@ resource "aws_instance" "instance" {
 
   	connection {
     	type = "ssh"
-    	user = "ubuntu"
+    	user = "automation"
     	private_key = file(local.private_key)
     	host = aws_instance.instance.public_ip
   	} 
