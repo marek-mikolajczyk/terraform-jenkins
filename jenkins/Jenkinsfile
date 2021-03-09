@@ -11,6 +11,7 @@ pipeline {
                 sh "/usr/local/bin/packer validate packer/packer.json"
             }
         }
+/*
         stage('BUILD: build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
@@ -22,6 +23,7 @@ pipeline {
             	}
             }
     	}
+*/
         stage('BUILD: deploy ec2 with terraform ') {
             
             environment {
