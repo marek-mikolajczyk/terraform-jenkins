@@ -3,13 +3,13 @@
 This is simple build that uses Jenkins pipeline with terraform, shell script on AWS platform.
 
 # Repository structure
-> .
-├── README.md
-├── jenkins
-├── packer
-├── scripts
-├── secrets
-└── terraform
+    .
+    ├── README.md
+    ├── jenkins
+    ├── packer
+    ├── scripts
+    ├── secrets
+    └── terraform
 
 
 
