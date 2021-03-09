@@ -38,6 +38,7 @@ pipeline {
                         sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
             	    }
                 }
+        }
         stage('FINAL: public generated inventory') {
             steps {
                 sh "git push"
