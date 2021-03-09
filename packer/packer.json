@@ -1,7 +1,3 @@
-/* 
-ubunt 20.04 LTS
-*/
-
 {
   "variables": {
   "aws_access_key": "{{env `AWS_ACCESS_KEY_ID`}}",
