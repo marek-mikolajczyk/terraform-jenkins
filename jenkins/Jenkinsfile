@@ -6,7 +6,7 @@ pipeline {
                 echo 'Hello world!' 
             }
         }
-        stage('Build AMI') {
+        stage('Build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
 			accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
@@ -17,5 +17,17 @@ pipeline {
             	}
             }
     	}
+        stage('deploy ec2 with terraform ') {
+            steps {
+            	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+			accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+			credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
+			secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+		{
+                sh "cd terraform ; /usr/local/bin/terraform init"
+                sh "cd terraform ; /usr/local/bin/terraform plan"
+                sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
+            	}
+            }
      }
 }
