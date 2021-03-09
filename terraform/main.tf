@@ -1,6 +1,7 @@
 locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
   instance_hostname = "terraform-jenkins"
+  private_key = "${path.cws}/../secrets/id_rsa_ssh_terraform-jenkins"
 }
   
   
@@ -30,6 +31,12 @@ resource "aws_instance" "instance" {
 		nohup busybox httpd -f -p ${var.server_port} &
 		EOF
 
+  	connection {
+    	type = "ssh"
+    	user = "ubuntu"
+    	private_key = "${file(local.private_key)}"
+    	host = aws_instance.instance.public_ip"
+  	} 
 
 	provisioner "remote-exec" {
   			inline = ["sudo hostnamectl set-hostname --static ${local.instance_hostname}"]
