@@ -41,7 +41,7 @@ resource "aws_instance" "instance" {
     	user = "automation"
     	private_key = file(local.private_key)
     	host = aws_instance.instance.public_ip
-		timeout = 1m
+		timeout = "1m"
   	} 
 
 	provisioner "remote-exec" {
