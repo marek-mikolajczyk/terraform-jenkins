@@ -43,7 +43,6 @@ pipeline {
             steps {
                 sh "git push"
             }
-        }
 	    }
      }
 }
