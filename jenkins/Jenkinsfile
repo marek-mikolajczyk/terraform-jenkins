@@ -29,5 +29,6 @@ pipeline {
                 sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
             	}
             }
+	}
      }
 }
