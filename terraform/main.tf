@@ -1,6 +1,6 @@
 data "aws_ami" "myimage" {
   most_recent = true
-  owners      = "self"
+  owners      = ["self"]
 
   name_regex = "^packer-example*"
 
