@@ -2,7 +2,6 @@ locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
   instance_hostname = "terraform-jenkins"
   private_key = "${path.module}/../secrets/id_rsa_ssh_terraform-jenkins"
-  my_public_ip_address = var.my_public_ip
 }
   
 
@@ -66,7 +65,7 @@ resource "aws_security_group" "sg" {
 		from_port = 22
 		to_port = 22
 		protocol = "tcp"
-		cidr_blocks = ["${local.my_public_ip_address}/32"]
+		cidr_blocks = ["${var.my_public_ip}/32"]
 	}
 }
 
