@@ -30,7 +30,7 @@ resource "aws_instance" "instance" {
 		EOF
 
 	tags = {
-		Name = "terraform-jenkins-${local.timestamp}"
+		Name = "terraform-jenkins"
 	}
 }
 
