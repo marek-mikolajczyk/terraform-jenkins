@@ -38,7 +38,7 @@ pipeline {
 			            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'],
                     
                         [string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
-                        variable: 'TV_VAR_my_public_ip')
+                        variable: 'TV_VAR_my_public_ip')],
                     
                          ]) 
 

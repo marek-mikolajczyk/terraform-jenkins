@@ -11,7 +11,11 @@ This is simple build that uses Jenkins pipeline with terraform, shell script on 
     ├── secrets
     └── terraform
 
+# Variables
 
+- defined in Jenkins app 
+  - TV_VAR_my_public_ip - defined outside git repo
+  - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
 
 # Steps in Jenkins build
 - Say hello to Jenkins
