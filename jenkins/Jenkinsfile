@@ -28,11 +28,12 @@ pipeline {
             
             environment {
 		        AWS_DEFAULT_REGION="us-east-1"
+                TV_VAR_my_public_ip=${env.MY_PUBLIC_IP}
 	        }
             steps {
                 withCredentials([
                     string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
-                        variable: 'TV_VAR_my_public_ip'),
+                        variable: 'MY_PUBLIC_IP'),
                     [$class: 'AmazonWebServicesCredentialsBinding', 
                         accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
                         credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
@@ -41,7 +42,7 @@ pipeline {
 		            {       
                         sh "cd terraform ; /usr/local/bin/terraform init"
                         sh "cd terraform ; /usr/local/bin/terraform plan "
-                        sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
+                        sh "cd terraform ;  /usr/local/bin/terraform apply -auto-approve"
             	    }
                 }
         }
