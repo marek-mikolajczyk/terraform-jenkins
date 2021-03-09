@@ -4,9 +4,11 @@ locals {
   private_key = "${path.module}/../secrets/id_rsa_ssh_terraform-jenkins"
 }
   
+/*
 variable "my_public_ip" {
   type = string
 }
+*/
   
 data "aws_ami" "myimage" {
   most_recent = true
