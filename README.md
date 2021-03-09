@@ -13,7 +13,7 @@ This is simple build that uses Jenkins pipeline with terraform, shell script on 
 
 
 
-# Steps in Jenkins
+# Steps in Jenkins build
 - Say hello to Jenkins
 - TEST: validate packer
   - runs packer validate
