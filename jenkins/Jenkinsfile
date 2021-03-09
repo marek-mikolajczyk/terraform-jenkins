@@ -11,7 +11,7 @@ pipeline {
                 sh "/usr/local/bin/packer validate packer/packer.json"
             }
         }
-
+/*
         stage('BUILD: build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
@@ -23,24 +23,20 @@ pipeline {
             	}
             }
     	}
-
+*/
         stage('BUILD: deploy ec2 with terraform ') {
             
             environment {
 		        AWS_DEFAULT_REGION="us-east-1"
 	        }
             steps {
-            	    withCredentials([
-                        
-                        [$class: 'AmazonWebServicesCredentialsBinding', 
-			            accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-			            credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
-			            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'],
-                    
-                        [string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
-                        variable: 'TV_VAR_my_public_ip')],
-                    
-                         ]) 
+                withCredentials([
+                    string(credentialsId: '05b3aa87-4961-4a4f-8859-8047099629ed', 
+                        variable: 'my_public_ip'),
+                    [$class: 'AmazonWebServicesCredentialsBinding', 
+                        accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+                        credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
+                        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
 
 		            {       
                         sh "cd terraform ; /usr/local/bin/terraform init"
