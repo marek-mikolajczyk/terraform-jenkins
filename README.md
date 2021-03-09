@@ -26,3 +26,8 @@ Steps in Jenkins:
 -- ssh key for user created via setup.sh is from directory 'secrets' in the same git repo
 -- the result is ami with timestamp in name, for later use with terraform
 - BUILD: deploy ec2 with terraform
+
+
+Issues
+===
+- file /tmp/123 is not created. Maybe I'll put file in another dir
