@@ -32,11 +32,11 @@ resource "aws_instance" "instance" {
 
 
 	provisioner "remote-exec" {
-  			inline = ["sudo hostnamectl set-hostname ${instance_hostname}"]
+  			inline = ["sudo hostnamectl set-hostname --static ${local.instance_hostname}"]
 	}
 
 	tags = {
-		Name = locals.instance_hostname
+		Name = local.instance_hostname
 	}
 }
 
@@ -61,4 +61,15 @@ variable "server_port" {
 output "public_ip" {
 	value = aws_instance.instance.public_ip
 	description = "The public IP address of the web server"
+}
+
+
+### The Ansible inventory file
+resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.root}/templates/hosts.tpl",
+    {
+      servers = [aws_instance.instance.public_dns]
+    }
+  )
+  filename = "${path.cwd}/inventories/hosts.cfg"
 }
