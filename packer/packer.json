@@ -7,7 +7,7 @@
   "provisioners": [
     {
         "type": "shell",
-        "inline": ["touch /tmp/123"]
+        "inline": ["echo 'build by packer' >  /tmp/123"]
     }
   ],
 
