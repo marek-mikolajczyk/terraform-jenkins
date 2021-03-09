@@ -28,7 +28,7 @@ pipeline {
             
             environment {
 		        AWS_DEFAULT_REGION="us-east-1"
-                TV_VAR_my_public_ip="${env.MY_PUBLIC_IP}"
+                
                 
 	        }
             steps {
@@ -43,7 +43,7 @@ pipeline {
 		            {       
                         sh "cd terraform ; /usr/local/bin/terraform init"
                         sh "cd terraform ; /usr/local/bin/terraform plan "
-                        sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
+                        sh "cd terraform ; TV_VAR_my_public_ip="${env.MY_PUBLIC_IP}" /usr/local/bin/terraform apply -auto-approve"
             	    }
                 }
         }
