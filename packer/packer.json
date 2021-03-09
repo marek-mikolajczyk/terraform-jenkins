@@ -6,10 +6,18 @@
 
   "provisioners": [
     {
+      "type": "file",
+      "source": "../secrets/id_rsa_ssh_terraform-jenkins.pub",
+      "destination": "/tmp/id_rsa_ssh_terraform-jenkins.pub"
+    },
+    {
         "type": "shell",
-        "inline": [
+        "inline": 
 		        "echo build by packer >> /tmp/123"
-		]
+    },
+    {
+      "type": "shell",
+      "script": "../scripts/setup.sh"
     }
   ],
 

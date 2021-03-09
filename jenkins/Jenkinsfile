@@ -6,33 +6,38 @@ pipeline {
                 echo 'Hello world!' 
             }
         }
-        stage('Build AMI with packer') {
+        stage('TEST: validate packer') {
+            steps {
+                sh "/usr/local/bin/packer validate packer/packer.json"
+            }
+        }
+        stage('BUILD: build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
-			accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-			credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
-			secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+			    accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+			    credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
+			    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
 		{
                 sh "/usr/local/bin/packer build packer/packer.json"
             	}
             }
     	}
-        stage('deploy ec2 with terraform ') {
+        stage('BUILD: deploy ec2 with terraform ') {
             
             environment {
-		AWS_DEFAULT_REGION="us-east-1"
-	    }
+		        AWS_DEFAULT_REGION="us-east-1"
+	        }
             steps {
-            	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
-			accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
-			credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
-			secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
-		{
-                sh "cd terraform ; /usr/local/bin/terraform init"
-                sh "cd terraform ; /usr/local/bin/terraform plan "
-                sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
-            	}
-            }
-	}
+            	    withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
+			        accessKeyVariable: 'AWS_ACCESS_KEY_ID', 
+			        credentialsId: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', 
+			        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]) 
+		            {       
+                        sh "cd terraform ; /usr/local/bin/terraform init"
+                        sh "cd terraform ; /usr/local/bin/terraform plan "
+                        sh "cd terraform ; /usr/local/bin/terraform apply -auto-approve"
+            	    }
+                }
+	    }
      }
 }
