@@ -15,7 +15,7 @@ This is simple build that uses Jenkins pipeline with terraform, shell script on 
 
 # Variables
 
-All variables required to run the code are defined in Jenkins app.
+All variables required to run the code are defined in Jenkins app.  
 On local laptop I source them from  ~/my_envs.sh
 
 - TV_VAR_my_public_ip - defined outside git repo
