@@ -13,11 +13,13 @@ This is simple build that uses Jenkins pipeline with terraform, shell script on 
 
 # Variables
 
-- defined in Jenkins app 
-  - TV_VAR_my_public_ip - defined outside git repo
-  - AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+All vars required to run are defined in Jenkins app.
+On local laptop I source them from  ~/my_envs.sh
 
-# Steps in Jenkins build
+- TV_VAR_my_public_ip - defined outside git repo
+- AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY
+
+# Steps in Jenkins pipeline
 - Say hello to Jenkins
 - TEST: validate packer
   - runs packer validate

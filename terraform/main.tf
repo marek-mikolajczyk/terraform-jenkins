@@ -89,7 +89,7 @@ resource "aws_security_group" "sg" {
 */
 
 resource "aws_s3_bucket" "s3inventory" {
-	bucket = "inventory"
+	bucket = "ansible-inventory-12345abcde"
   	acl    = "private"
 
   	versioning {
