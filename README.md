@@ -9,7 +9,9 @@ This is simple build that uses Jenkins pipeline with terraform, shell script on 
     ├── packer - build AWS AMI
     ├── scripts - shell scripts for Packer. Configures user 'automation' on ec2
     ├── secrets - ssh keypair for ec2 for user automation
-    └── terraform - builds ec2 webserver with security group (port 8080 from world and 22 from my laptop). Builds S3 bucket and puts there the ansible inventory generated from TF template
+    └── terraform 
+           - builds ec2 webserver with security group (port 8080 from world and 22 from my laptop). 
+           - builds S3 bucket and puts there the ansible inventory generated from TF template
 
 # Variables
 
