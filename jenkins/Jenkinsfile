@@ -47,10 +47,12 @@ pipeline {
             	    }
                 }
         }
+/*
         stage('FINAL: public generated inventory') {
             steps {
                 sh "git push origin HEAD:main"
             }
 	    }
      }
+*/
 }
