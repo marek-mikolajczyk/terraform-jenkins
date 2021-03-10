@@ -8,6 +8,12 @@ locals {
 variable "my_public_ip" {
   type = string
 }
+variable "server_port" {
+	description = "The port the server will use for HTTP requests"
+	type = number
+	default = 8080
+}
+
 
   
 data "aws_ami" "myimage" {
@@ -70,12 +76,40 @@ resource "aws_security_group" "sg" {
 	}
 }
 
+### The Ansible inventory file
 
-variable "server_port" {
-	description = "The port the server will use for HTTP requests"
-	type = number
-	default = 8080
+/*resource "local_file" "hosts_cfg" {
+  content = templatefile("${path.root}/templates/hosts.tpl",
+    {
+      servers = [aws_instance.instance.public_dns]
+    }
+  )
+  filename = "${path.cwd}/inventories/hosts.cfg"
 }
+*/
+
+resource "aws_s3_bucket" "bucket" {
+	bucket = "inventory"
+  	acl    = "private"
+
+  	versioning {
+    	enabled = true
+  	}
+}
+
+resource "aws_s3_bucket_object" "s3inventory" {
+	bucket = aws_s3_bucket.examplebucket.id
+	key = "hosts.cfg"
+  	content = templatefile(
+			"${path.root}/templates/hosts.tpl",
+    		{
+      			servers = [aws_instance.instance.public_dns]
+    		}
+  		)
+
+}
+
+
 
 
 output "public_ip" {
@@ -84,12 +118,4 @@ output "public_ip" {
 }
 
 
-### The Ansible inventory file
-resource "local_file" "hosts_cfg" {
-  content = templatefile("${path.root}/templates/hosts.tpl",
-    {
-      servers = [aws_instance.instance.public_dns]
-    }
-  )
-  filename = "${path.cwd}/inventories/hosts.cfg"
-}
+
