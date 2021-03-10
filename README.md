@@ -2,6 +2,8 @@
 
 This is simple build that uses Jenkins pipeline with terraform, shell script on AWS platform - code is in Git repo.
 
+This project is to learn TF, AWS, Jenkins and Markdown.
+
 
 # Repository structure
  
