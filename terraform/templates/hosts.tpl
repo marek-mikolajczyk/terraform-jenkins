@@ -1,4 +1,8 @@
 [all]
 %{ for ip in servers~}
-${ip} ansible_host={ip}
+${ip}
 %{ endfor ~}
+
+[all:vars]
+ansible_connection=ssh
+ansible_user=automation

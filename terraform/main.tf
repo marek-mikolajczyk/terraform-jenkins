@@ -88,7 +88,7 @@ resource "aws_security_group" "sg" {
 }
 */
 
-resource "aws_s3_bucket" "bucket" {
+resource "aws_s3_bucket" "s3inventory" {
 	bucket = "inventory"
   	acl    = "private"
 
@@ -97,8 +97,8 @@ resource "aws_s3_bucket" "bucket" {
   	}
 }
 
-resource "aws_s3_bucket_object" "s3inventory" {
-	bucket = aws_s3_bucket.examplebucket.id
+resource "aws_s3_bucket_object" "hosts" {
+	bucket = aws_s3_bucket.s3inventory.id
 	key = "hosts.cfg"
   	content = templatefile(
 			"${path.root}/templates/hosts.tpl",
