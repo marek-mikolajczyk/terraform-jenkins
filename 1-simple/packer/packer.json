@@ -7,7 +7,7 @@
   "provisioners": [
     {
       "type": "file",
-      "source": "secrets/id_rsa_ssh_terraform-jenkins.pub",
+      "source": "1-simple/secrets/id_rsa_ssh_terraform-jenkins.pub",
       "destination": "/tmp/id_rsa_ssh_terraform-jenkins.pub"
     },
     {
@@ -17,7 +17,7 @@
     },
     {
       "type": "shell",
-      "script": "scripts/setup.sh"
+      "script": "1-simple/scripts/setup.sh"
     }
   ],
 
