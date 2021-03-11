@@ -17,6 +17,7 @@ pipeline {
                 sh "/usr/local/bin/packer validate 1-simple/packer/packer.json"
             }
         }
+
         stage('BUILD: AWS create buckets') {
             steps {
                 withAWS(credentials: 'f82c0baa-35ea-4a9e-b488-bf5308ecdddb', region: 'us-east-1') {
@@ -34,6 +35,7 @@ pipeline {
                 
             }
         }
+        /*
         stage('BUILD: build AMI with packer') {
             steps {
             	withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', 
@@ -45,7 +47,7 @@ pipeline {
             	}
             }
     	}
-
+        */
         stage('BUILD: deploy ec2 with terraform ') {
             
 
