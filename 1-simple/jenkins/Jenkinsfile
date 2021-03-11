@@ -62,9 +62,9 @@ pipeline {
 
 		            {       
                         sh '''
-                            /usr/local/bin/terraform -chdir 1-simple/terraform init
-                            /usr/local/bin/terraform -chdir 1-simple/terraform plan
-                            /usr/local/bin/terraform -chdir 1-simple/terraform apply -auto-approve
+                            /usr/local/bin/terraform -chdir=1-simple/terraform init
+                            /usr/local/bin/terraform -chdir=1-simple/terraform plan
+                            /usr/local/bin/terraform -chdir=1-simple/terraform apply -auto-approve
 
                         '''
             	    }
