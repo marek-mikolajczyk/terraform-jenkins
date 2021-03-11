@@ -1,3 +1,7 @@
+provider "aws" {
+  region = "us-east-1"
+}
+
 locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
   instance_hostname = "terraform-jenkins"
@@ -29,6 +33,18 @@ data "aws_ami" "myimage" {
 
 }
 
+
+data "aws_s3_bucket" "s3-tf-state" {
+  bucket = "terraform-state"
+}
+
+data "aws_s3_bucket" "s3-rsa" {
+  bucket = "private-keys"
+}
+
+data "aws_s3_bucket" "s3-inventories" {
+  bucket = "inventories"
+}
 
 resource "aws_instance" "instance" {
 	ami = data.aws_ami.myimage.id
@@ -98,18 +114,16 @@ resource "aws_s3_bucket" "s3inventory" {
 }
 
 resource "aws_s3_bucket_object" "hosts" {
-	bucket = aws_s3_bucket.s3inventory.id
+	bucket = aws_s3_bucket.s3-inventories.id
 	key = "hosts.cfg"
   	content = templatefile(
-			"${path.root}/templates/hosts.tpl",
+			"${path.cwd}/templates/hosts.tpl",
     		{
       			servers = [aws_instance.instance.public_dns]
     		}
   		)
 
 }
-
-
 
 
 output "public_ip" {
