@@ -35,15 +35,15 @@ data "aws_ami" "myimage" {
 
 
 data "aws_s3_bucket" "s3-tf-state" {
-  bucket = "terraform-state"
+  bucket = "terraform-state-12345abcde"
 }
 
 data "aws_s3_bucket" "s3-rsa" {
-  bucket = "private-keys"
+  bucket = "private-keys-12345abcde"
 }
 
 data "aws_s3_bucket" "s3-inventories" {
-  bucket = "inventories"
+  bucket = "inventories-12345abcde"
 }
 
 resource "aws_instance" "instance" {

@@ -24,8 +24,8 @@ pipeline {
 
                         for s3bucket in terraform-state private-keys inventories; do
 
-                            aws s3api create-bucket --bucket $s3bucket --acl private 
-                            aws s3api put-bucket-versioning --bucket $s3bucket --versioning-configuration Status=Enabled
+                            aws s3api create-bucket --bucket "$s3bucket"-12345abcde --acl private 
+                            aws s3api put-bucket-versioning --bucket "$s3bucket"-12345abcde --versioning-configuration Status=Enabled
                         
                         done
   
