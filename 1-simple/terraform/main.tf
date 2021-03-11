@@ -102,7 +102,7 @@ resource "aws_security_group" "sg" {
   )
   filename = "${path.cwd}/inventories/hosts.cfg"
 }
-*/
+
 
 resource "aws_s3_bucket" "s3inventory" {
 	bucket = "ansible-inventory-12345abcde"
@@ -112,6 +112,7 @@ resource "aws_s3_bucket" "s3inventory" {
     	enabled = true
   	}
 }
+*/
 
 resource "aws_s3_bucket_object" "hosts" {
 	bucket = aws_s3_bucket.s3-inventories.id
