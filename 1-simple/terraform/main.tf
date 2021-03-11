@@ -90,6 +90,10 @@ resource "aws_security_group" "sg" {
 		protocol = "tcp"
 		cidr_blocks = ["${var.my_public_ip}/32"]
 	}
+
+	tags = {
+    	Name = "terraform-jenkins-${local.timestamp}"
+  }
 }
 
 ### The Ansible inventory file
