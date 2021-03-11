@@ -5,7 +5,7 @@ provider "aws" {
 locals {
   timestamp = formatdate("YYYYMMDDhhmmss", timestamp())
   instance_hostname = "terraform-jenkins"
-  private_key = "${path.module}/../secrets/id_rsa_ssh_terraform-jenkins"
+  private_key = "${path.root}/../secrets/id_rsa_ssh_terraform-jenkins"
 }
   
 
@@ -118,7 +118,7 @@ resource "aws_s3_bucket_object" "hosts-cfg" {
 	bucket = data.aws_s3_bucket.s3-inventories.id
 	key = "hosts.cfg"
   	content = templatefile(
-			"${path.cwd}/templates/hosts.tpl",
+			"${path.root}/templates/hosts.tpl",
     		{
       			servers = [aws_instance.instance.public_dns]
     		}
