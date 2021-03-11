@@ -114,7 +114,7 @@ resource "aws_s3_bucket" "s3inventory" {
 }
 */
 
-resource "aws_s3_bucket_object" "hosts" {
+resource "aws_s3_bucket_object" "hosts-cfg" {
 	bucket = aws_s3_bucket.s3-inventories.id
 	key = "hosts.cfg"
   	content = templatefile(
