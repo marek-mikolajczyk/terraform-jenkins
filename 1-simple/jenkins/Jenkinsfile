@@ -62,12 +62,9 @@ pipeline {
 
 		            {       
                         sh '''
-                            echo "will go to terraform dir"
-                            cd 1-simple/terraform
-                            echo "my working dir is $PWD"
-                            /usr/local/bin/terraform init
-                            /usr/local/bin/terraform plan
-                            /usr/local/bin/terraform apply -auto-approve
+                            /usr/local/bin/terraform -chdir 1-simple/terraform init
+                            /usr/local/bin/terraform -chdir 1-simple/terraform plan
+                            /usr/local/bin/terraform -chdir 1-simple/terraform apply -auto-approve
 
                         '''
             	    }
